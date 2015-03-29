@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+apply plugin: 'war'
+
+war {
+    baseName = 'ROOT'
+    //version =  '0.5.0'
+}
+
+
+//jar {
+ //   baseName = 'gs-rest-service'
+   // version =  '0.1.0'
+//}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+   compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.1.4.RELEASE'
+    
+//    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile("com.h2database:h2")
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.hibernate:hibernate-core:4.3.6.Final'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    //compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'org.javassist:javassist:3.15.0-GA'
+    compile 'mysql:mysql-connector-java:5.1.31'
+    compile 'commons-dbcp:commons-dbcp:1.4'  
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
